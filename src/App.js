@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import './App.css';
+import axios from "axios";
+
+const baseURL = "http://localhost:3300";
+
+class App extends Component {
+
+  constructor() {
+    super();
+    this.state = {
+    };
+  }
+
+  render() {
+
+    // const inputValue = useState('');
+
+    // function handleChange(event) {
+    //   console.log(event.target.value);
+    // }
+
+    function genSegitiga() {
+      axios
+        .post(baseURL+"/gen-segitiga", {
+          value: '123456' 
+        })
+        .then((response) => {
+          console.log(response.data)
+        });
+    }
+
+    return (
+      <div className="App">
+          <input type="text"/><br />
+          <button onClick={genSegitiga}>Generate Segitiga</button>
+          <button>Generate Bilangan Ganjil</button>
+          <button>Generate Bilangan Prima</button>
+          <p>Result :</p>
+      </div>
+    );
+  }
 }
 
 export default App;
